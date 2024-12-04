@@ -1,0 +1,1 @@
+(cd backend && fastapi dev app.py) & (cd frontend && yarn start) & wait
