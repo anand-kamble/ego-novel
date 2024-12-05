@@ -67,7 +67,7 @@ Once you all of these ready, please follow the steps below:
   - Commitizen
 
 
-## Project Structure
+## Project details
 ### AI
 To generate the completions for the story, I have used langgraph. I have used `StateGraph` for this application, which has memory. I have previosly worked with llama-index workflows and found it very similar to langgraph.  
 I am using two different graphs in the project since Anthropic does not allow more than one system prompt. I my application for OpenAI I am adding system message when generating the next sentence, I did that to prevent the model going off track as I am using GPT 3.5.  
@@ -88,3 +88,6 @@ I have used ReactJS with TypeScript and implemented the necessary tools like Rou
 ### Project Setup
 I am using Poetry for package management in Python and Yarn in Node. I have also added commitizen into the project to keep the commit messages in a standard format.  
 Also, I did use Linear to manage the project by splitting it into tasks and also did make different github branches for feature and then merged those using Pull Requests.
+
+### Database
+For database I am using Supabase, where I have created tables with appropiate columns. I am using supabase python package to interact with it.
