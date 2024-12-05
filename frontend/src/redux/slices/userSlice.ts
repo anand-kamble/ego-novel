@@ -29,14 +29,7 @@ const initialState: UserState = {
 export const UserSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    login: (state, action: PayloadAction<boolean>) => {
-      state.loggedIn = action.payload;
-    },
-    logout: (state) => {
-      state.loggedIn = false;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(registerUser.pending, (state) => {
@@ -46,15 +39,37 @@ export const UserSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loggedIn = true;
-        state.email = action.payload.email;
-        state.username = action.payload.username;
-        state.firstName = action.payload.firstName;
-        state.lastName = action.payload.lastName;
-        state.password = action.payload.password;
+        const user = action.payload.data[0]
+        state.email = user.email;
+        state.username = user.username;
+        state.firstName = user.firstName;
+        state.lastName = user.lastName;
+        state.password = user.password;
         state.loading = false;
         state.error = null;
       })
       .addCase(registerUser.rejected, (state, action) => {
+        state.loggedIn = false;
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(signInUser.pending, (state) => {
+        state.loggedIn = false;
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(signInUser.fulfilled, (state, action) => {
+        state.loggedIn = true;
+        console.log("action.payload", action.payload);
+        state.email = action.payload.user.email;
+        state.username = action.payload.user.username;
+        state.firstName = action.payload.user.firstName;
+        state.lastName = action.payload.user.lastName;
+        state.password = action.payload.user.password;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(signInUser.rejected, (state, action) => {
         state.loggedIn = false;
         state.loading = false;
         state.error = action.payload as string;
@@ -91,7 +106,26 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-// Action creators are generated for each case reducer function
-export const { login, logout } = UserSlice.actions;
+export const signInUser = createAsyncThunk(
+  "user/signIn",
+  async (
+    user: {
+      username: string;
+      password: string;
+    },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axios.post(BACKEND_URL + "/login", user);
+      if (response.data.error) {
+        return rejectWithValue(response.data.error);
+      }
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 export default UserSlice.reducer;

@@ -65,3 +65,12 @@ async def insert_data(table_name: str, data: dict):
         return response
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+async def update_data(table_name: str, data: dict, column_name: str, column_value: str):
+    try:
+        if client is None:
+            raise ValueError("Client is not initialized")
+        response = await client.table(table_name).update(data).eq(column_name, column_value).execute()
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))

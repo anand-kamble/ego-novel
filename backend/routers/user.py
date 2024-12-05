@@ -11,8 +11,8 @@ async def register(user:User):
     return response
 
 @router.post("/login")
-async def login(username: str, password: str):
+async def login(body:dict):
     
-    response = await login_user(username, password)
+    response = await login_user(body['username'], body['password'])
     
     return response

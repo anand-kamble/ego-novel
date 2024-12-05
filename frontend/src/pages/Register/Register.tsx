@@ -31,10 +31,8 @@ const Register = () => {
     const handleRegister = () => {
         //TODO: Add validation for email and password
         dispatch(registerUser(state)).finally(() => {
-            if (!error && !loading) {
                 console.log("User registered successfully");
                 navigate("/stories");
-            }
         });
     };
 
