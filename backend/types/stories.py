@@ -15,5 +15,6 @@ class Story(TypedDict):
     published: bool
     published_version: Optional[int]
     user: User
+    id: int
     
     
