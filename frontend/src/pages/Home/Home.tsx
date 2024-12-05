@@ -7,7 +7,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const handleGetStarted = () => {
-        navigate("/stories");
+        navigate("/register");
     }
 
     return (
