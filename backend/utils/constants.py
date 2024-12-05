@@ -1,0 +1,4 @@
+USERS_TABLE_NAME = 'user'
+USERS_TABLE_USERNAME_COLUMN = 'username'
+
+STORY_TABLE_NAME = 'stories'

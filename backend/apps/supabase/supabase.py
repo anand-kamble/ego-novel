@@ -35,3 +35,33 @@ async def get_table_data(table_name: str):
         return response
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+
+async def get_column(table_name: str, column_name: str):
+    try:
+        if client is None:
+            raise ValueError("Client is not initialized")
+        response = await client.table(table_name).select(column_name).execute()
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    
+
+async def get_row(table_name: str, column_name: str, column_value: str):
+    try:
+        if client is None:
+            raise ValueError("Client is not initialized")
+        response = await client.table(table_name).select("*").eq(column_name, column_value).execute()
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))    
+
+    
+async def insert_data(table_name: str, data: dict):
+    try:
+        if client is None:
+            raise ValueError("Client is not initialized")
+        response = await client.table(table_name).insert(data).execute()
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
