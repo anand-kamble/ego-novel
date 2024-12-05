@@ -1,3 +1,10 @@
+## 0.2.0 (2024-12-05)
+
+### Feat
+
+- **all**: everything working
+- **frontend**: added user registration function
+
 ## 0.1.0 (2024-12-04)
 
 ### Feat
