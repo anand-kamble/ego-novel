@@ -124,7 +124,7 @@ const Stories = () => {
         }}>
           <TextField.Root style={{
             width: "calc(50vw - 125px)"
-          }} size="3" placeholder="Story Title" value={title} onChange={(e) => settitle(e.currentTarget.value)} />
+          }} size="3" placeholder="Story Title" value={title} onChange={(e) => settitle(e.currentTarget.value)} disabled={!id}/>
           <Box px={"6"} style={{
             display: "flex",
             alignItems: "center",
@@ -166,11 +166,11 @@ const Stories = () => {
           <TextArea style={{
             height: "calc(100vh - 240px)",
             width: "calc(50vw - 125px)"
-          }} placeholder="Story Content" value={content} onChange={(e) => onChangeContent(e.currentTarget.value)} />
+          }} placeholder="Story Content" value={content} onChange={(e) => onChangeContent(e.currentTarget.value)} disabled={!id}/>
           <TextArea style={{
             height: "calc(100vh - 240px)",
             width: "calc(50vw - 125px)"
-          }} placeholder="Translated Content" value={translation}/>
+          }} placeholder="Translated Content" value={translation} disabled={!id}/>
         </Flex>
         <Flex>
           <Flex gap={"3"} style={{

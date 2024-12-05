@@ -1,1 +1,3 @@
-(cd frontend && yarn start) & (poetry run start)
+#!/bin/bash
+
+(cd frontend && yarn start) & (cd backend && fastapi run app.py)
