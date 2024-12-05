@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router';
 import { Header } from './components';
-import { Home, Stories } from './pages';
+import { Home, Register, Stories } from './pages';
 import { Theme } from '@radix-ui/themes';
 import { DarkModeContext } from './contexts/DarkModeContext';
 
@@ -17,6 +17,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/register' element={<Register />} />
             <Route path='/stories' element={<Stories />} />
             <Route path='/*' element={<div>404</div>} />
           </Routes>
