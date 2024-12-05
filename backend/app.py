@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .routers import database_router, user_router
+from .routers import database_router, user_router, stories_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -16,6 +16,7 @@ app.add_middleware(
 
 app.include_router(database_router)
 app.include_router(user_router)
+app.include_router(stories_router)
 
 @app.get("/")
 def read_root():
